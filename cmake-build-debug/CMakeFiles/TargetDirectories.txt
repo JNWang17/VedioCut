@@ -1,0 +1,3 @@
+/Users/wangjinning/CLionProjects/VedioCut/cmake-build-debug/CMakeFiles/VedioCut.dir
+/Users/wangjinning/CLionProjects/VedioCut/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/wangjinning/CLionProjects/VedioCut/cmake-build-debug/CMakeFiles/rebuild_cache.dir
