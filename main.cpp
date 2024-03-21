@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
     AVCodecParameters *codec_params = nullptr;
     AVCodecContext *codec_ctx = nullptr;
 
-//    codec_ctx->hwaccel = nullptr; // 禁用硬件加速
+    codec_ctx->hwaccel = nullptr; // 禁用硬件加速
 
     int video_stream_index = av_find_best_stream(format_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, const_cast<const AVCodec **>(&codec), 0);
 
