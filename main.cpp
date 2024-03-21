@@ -37,6 +37,8 @@ int main(int argc, char *argv[]) {
     AVCodec *codec = nullptr;
     AVCodecParameters *codec_params = nullptr;
     AVCodecContext *codec_ctx = nullptr;
+
+//    codec_ctx->hwaccel = nullptr;
     int video_stream_index = av_find_best_stream(format_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, const_cast<const AVCodec **>(&codec), 0);
 
     if (video_stream_index < 0) {
