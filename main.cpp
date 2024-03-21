@@ -38,8 +38,6 @@ int main(int argc, char *argv[]) {
     AVCodecParameters *codec_params = nullptr;
     AVCodecContext *codec_ctx = nullptr;
 
-    codec_ctx->hwaccel = nullptr; // 禁用硬件加速
-
     int video_stream_index = av_find_best_stream(format_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, const_cast<const AVCodec **>(&codec), 0);
 
     if (video_stream_index < 0) {
@@ -113,8 +111,18 @@ void save_frame(AVFrame *frame, int width, int height, int frame_number, const s
         return;
     }
 
+    // 设置帧的属性
+    frame->width = width;
+    frame->height = height;
+    frame->format = AV_PIX_FMT_RGB24;
+
     // 分配图像缓冲区
-    av_frame_get_buffer(frame, 32); // Allocate frame buffer
+    int ret = av_frame_get_buffer(frame, 32); // Allocate frame buffer
+    if (ret < 0) {
+        std::cerr << "Error: Failed to allocate frame buffer." << std::endl;
+        fclose(file);
+        return;
+    }
 
     // 使用SWSContext执行图像转换
     struct SwsContext *sws_ctx = sws_getCachedContext(nullptr, width, height, (AVPixelFormat)frame->format,
@@ -127,6 +135,11 @@ void save_frame(AVFrame *frame, int width, int height, int frame_number, const s
 
     // 分配临时缓冲区
     uint8_t *rgb_buffer = (uint8_t *)av_malloc(width * height * 3 * sizeof(uint8_t));
+    if (!rgb_buffer) {
+        std::cerr << "Error: Failed to allocate memory for RGB buffer." << std::endl;
+        fclose(file);
+        return;
+    }
 
     // 将帧数据转换为RGB格式
     uint8_t *dst_data[1] = {rgb_buffer};
