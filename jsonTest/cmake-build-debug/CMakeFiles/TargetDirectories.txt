@@ -1,0 +1,3 @@
+/Users/wangjinning/CLionProjects/jsonTest/cmake-build-debug/CMakeFiles/jsonTest.dir
+/Users/wangjinning/CLionProjects/jsonTest/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/wangjinning/CLionProjects/jsonTest/cmake-build-debug/CMakeFiles/rebuild_cache.dir

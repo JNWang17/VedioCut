@@ -103,7 +103,7 @@ int main(int argc, char *argv[]) {
 
 void save_frame(AVFrame *frame, int width, int height, int frame_number, const std::string &output_folder) {
     std::ostringstream filename;
-    filename << output_folder << "/frame_" << frame_number << ".png";
+    filename << output_folder << "/frame_" << frame_number << ".jpg";
 
     FILE *file = fopen(filename.str().c_str(), "wb");
     if (!file) {
